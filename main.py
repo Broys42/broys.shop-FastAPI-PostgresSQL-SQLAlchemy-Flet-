@@ -21,9 +21,8 @@ async def main(page: ft.Page):
     video = Video(page)
     banner = Banner(page, video)
     main_page = MainPage(page)
-    main_page.controls.append(banner)
     spacer = ft.Container(bgcolor="#000000", height=10000, key="34")
-    main_page.controls.append(spacer)
+    main_page.controls.extend([banner,spacer])
 
     def scroll_to_key(e):
         main_page.scroll_to(key="34", duration=1000)
@@ -31,7 +30,7 @@ async def main(page: ft.Page):
     banner.container_for_button.on_click = scroll_to_key
 
     await page.add_async(main_page)
-    await video.playlist_add_async(video.videoBanner)
+    video.playlist_add(video.videoBanner)
 
     page.update()
     while True:
@@ -42,4 +41,4 @@ flet_app = FastAPI()
 
 flet_app.mount("/", flet_fastapi.app(main))
 
-app.mount("/flet-app", flet_app)
+app.mount("/", flet_app)

@@ -79,9 +79,22 @@ class Banner(ft.Stack):
             self.container,
         ]
 
-        self.page.on_resize = self.page_on_resize
+        self.page.on_resized = self.page_on_resize
 
     def page_on_resize(self, e: ft.WindowResizeEvent):
         self.height = e.page.height
         self.width = e.page.width
         self.page.update()
+
+#Test launch
+if __name__ == "__main__":
+    from video import Video
+    import asyncio
+    async def main(page: ft.Page):
+        video = Video(page)
+        banner = Banner(page, video)
+        page.add(banner)
+        video.add_video_in_playlist()
+        page.update()
+        await video.start_loop_play()
+    app = asyncio.run(ft.app_async(main))
