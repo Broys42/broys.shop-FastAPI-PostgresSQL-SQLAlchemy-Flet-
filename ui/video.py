@@ -7,8 +7,9 @@ class Video(ft.Video):
         self.page = page
         self.page.on_resized = self.page_on_resize
 
+        self.expand = True
         #Video doesnt have auto-fullscreen-mode so to fill white frame video is little bit scaled
-        self.scale = 1.05
+        # self.scale = 1.05
 
         #This VideoMedia later add in playlist by playlist_add_media()
         self.videoBanner = ft.VideoMedia(
@@ -47,7 +48,7 @@ class Video(ft.Video):
         self.aspect_ratio=self.page.width/self.page.height
         self.page.update()
 
-#Test launch
+#Test launch (python -m ui.video)
 if __name__ == "__main__":
     async def main(page: ft.Page):
         video = Video(page)

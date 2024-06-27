@@ -86,9 +86,10 @@ class Banner(ft.Stack):
         self.width = e.page.width
         self.page.update()
 
-#Test launch
+#Test launch (python -m ui.banner)
 if __name__ == "__main__":
-    from video import Video
+    print("Сработал")
+    from ui.video import Video
     import asyncio
     async def main(page: ft.Page):
         video = Video(page)

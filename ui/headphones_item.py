@@ -4,7 +4,7 @@ class HeadphonesItem(ft.Column):
     def __init__(self):
         super().__init__()
         self.background_rectangle = ft.Container(
-            bgcolor="#ffffff",
+            bgcolor="#f3f3f3",
         )
 
         self.headphones_image = ft.Image(
@@ -14,14 +14,14 @@ class HeadphonesItem(ft.Column):
         self.item_title = ft.Text(
             value="G 735 - WHITE",
             size=17,
-            color=ft.colors.WHITE,
+            color=ft.colors.BLACK,
             weight=ft.FontWeight.NORMAL
         )
 
         self.item_price = ft.Text(
             value="2500",
             size=17,
-            color=ft.colors.WHITE,
+            color=ft.colors.BLACK,
             weight=ft.FontWeight.BOLD
         )
 
@@ -50,7 +50,7 @@ class HeadphonesItem(ft.Column):
         ]
 
 
-#Test launch
+#Test launch (python -m ui.headphones_ui)
 if __name__ == "__main__":
     def main(page: ft.Page):
         headphones = HeadphonesItem()
