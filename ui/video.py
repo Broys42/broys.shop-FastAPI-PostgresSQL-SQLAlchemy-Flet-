@@ -10,7 +10,6 @@ class Video(ft.Video):
         #Video doesnt have auto-fullscreen-mode so to fill white frame video is little bit scaled
         self.scale = 1.05
 
-
         #This VideoMedia later add in playlist by playlist_add_media()
         self.videoBanner = ft.VideoMedia(
             resource='https://github.com/Broys42/broys.shop/raw/main/assets/video/video.mp4',

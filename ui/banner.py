@@ -45,9 +45,8 @@ class Banner(ft.Stack):
         )
 
         #Stack dont support click event so button also plased in container
-        self.conteiner_for_button = ft.Container(
+        self.container_for_button = ft.Container(
             content=self.button,
-            on_click=self.on_button_click
         )
 
         self.text_column = ft.Column(
@@ -63,27 +62,24 @@ class Banner(ft.Stack):
         self.text_and_button_column = ft.Column(
             controls=[
             self.text_column,
-            self.conteiner_for_button
+            self.container_for_button
             ],
             spacing=40,
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER
         )
 
-        self.conteiner = ft.Container(
+        self.container = ft.Container(
             content=self.text_and_button_column,
             alignment=ft.alignment.center
         )
 
         self.controls = [
             self.video,
-            self.conteiner,
+            self.container,
         ]
 
         self.page.on_resize = self.page_on_resize
-
-    def on_button_click(self):
-        print("button clicked")
 
     def page_on_resize(self, e: ft.WindowResizeEvent):
         self.height = e.page.height
