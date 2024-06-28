@@ -2,11 +2,11 @@ import asyncio
 import uvicorn
 from contextlib import asynccontextmanager
 import flet as ft
+import flet.fastapi as flet_fastapi
 from ui.banner import Banner
 from ui.video import Video
 from ui.main_page import MainPage
 from ui.headphones_row import HeadphonesRow
-import flet.fastapi as flet_fastapi
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -17,8 +17,6 @@ async def lifespan(app: FastAPI):
     await flet_fastapi.app_manager.shutdown()
 
 app = FastAPI(lifespan=lifespan)
-
-
 
 async def main(page: ft.Page):
     page.bgcolor = ft.LinearGradient(colors=[ft.colors.BLUE, ft.colors.YELLOW])
@@ -39,6 +37,7 @@ async def main(page: ft.Page):
     banner.container_for_button.on_click = lambda e: scroll_to_key(e=e, key="34")
     main_page.header.scroll_to_headphones.on_click = lambda e: scroll_to_key(e=e, key="34")
     main_page.header.scroll_to_begin.on_click = lambda e: scroll_to_begin(e=e)
+
 
     video.playlist_add(video.videoBanner)
     page.update()
