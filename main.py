@@ -18,25 +18,32 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+
+
 async def main(page: ft.Page):
     page.bgcolor = ft.LinearGradient(colors=[ft.colors.BLUE, ft.colors.YELLOW])
+    page.padding = 0
     video = Video(page)
     banner = Banner(page, video)
     headphones_row = HeadphonesRow(page)
     main_page = MainPage(page)
-    main_page.controls.extend([banner, headphones_row])
-
-    def scroll_to_key(e):
-        print("Пошла")
-        main_page.scroll_to(key="34", duration=1000)
-
-    banner.container_for_button.on_click = scroll_to_key
-
+    main_page.page_without_header.controls.extend([banner, headphones_row])
     page.add(main_page)
+
+    def scroll_to_key(e, key: str):
+        main_page.page_without_header.scroll_to(key=key, duration=1000)
+
+    def scroll_to_begin(e):
+        main_page.page_without_header.scroll_to(offset=0, duration=1000)
+
+    banner.container_for_button.on_click = lambda e: scroll_to_key(e=e, key="34")
+    main_page.header.scroll_to_headphones.on_click = lambda e: scroll_to_key(e=e, key="34")
+    main_page.header.scroll_to_begin.on_click = lambda e: scroll_to_begin(e=e)
+
     video.playlist_add(video.videoBanner)
     page.update()
-    await video.start_loop_play()
 
+    await video.start_loop_play()
 
 flet_app = FastAPI()
 

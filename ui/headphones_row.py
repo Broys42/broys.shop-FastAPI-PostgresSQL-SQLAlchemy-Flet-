@@ -13,22 +13,18 @@ class HeadphonesRow(ft.Row):
         self.key = "34"
         self.alignment = ft.MainAxisAlignment.CENTER
         self.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-        print(self.height)
-        print(self.width)
 
         self.controls = [
 
         ]
 
         self.page.on_resized = self.page_on_resize
-        
+
         for i in range(10):
             self.controls.append(HeadphonesItem())
 
     def page_on_resize(self, e: ft.WindowResizeEvent):
-        print(self.height)
-        print(self.width)
-        self.height = e.page.height
+        # self.height = e.page.height
         self.width = 1440
         self.page.update()
 

@@ -1,25 +1,33 @@
 import flet as ft
+from ui.header import Header
 
-class MainPage(ft.Column):
+class MainPage(ft.Stack):
     def __init__(self, page: ft.Page):
         super().__init__()
         self.page = page
-        self.page.on_resized = self.page_on_resize
         self.expand = True
-        #Expand create white borders. To fix this list is a little bit scaled
-        self.scale = 1.02
-        self.on_scroll_interval = 1
-        self.scroll = ft.ScrollMode.ALWAYS
-        self.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+
+
+        self.header = Header(page)
+
+        self.page_without_header = ft.Column(
+            controls=[
+
+            ],
+            scroll = ft.ScrollMode.ALWAYS,
+            expand = True,
+            horizontal_alignment = ft.CrossAxisAlignment.CENTER,
+            on_scroll_interval = 1
+        )
 
         self.controls = [
-
+            self.page_without_header,
+            self.header
         ]
+
         self.page.on_resized = self.page_on_resize
 
     def page_on_resize(self, e: ft.WindowResizeEvent):
-        self.height = e.page.height
-        self.width = e.page.width
         self.page.update()
 
 
