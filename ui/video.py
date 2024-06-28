@@ -16,7 +16,7 @@ class Video(ft.Video):
         self.is_loaded = False
 
         self.expand=True
-        self.playlist_mode=ft.PlaylistMode.LOOP
+        self.playlist_mode=ft.PlaylistMode.SINGLE
         self.fill_color=ft.colors.BLUE_400
         self.aspect_ratio=self.page.width/self.page.height
         self.show_controls=False
@@ -36,9 +36,15 @@ class Video(ft.Video):
         self.is_loaded = True
 
     async def start_loop_play(self):
+        #Flet is blinkink color when video is repeating. 7500 is duration of video in mlseconds then jump to 0
         while True:
             await asyncio.sleep(0.1)
             self.play()
+            try:
+                if await self.get_current_position_async(0.1) > 7500:
+                    self.seek(0)
+            except:
+                pass
 
     def page_on_resize(self, e: ft.WindowResizeEvent):
         self.height = e.page.height
