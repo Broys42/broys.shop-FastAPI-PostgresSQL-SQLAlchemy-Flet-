@@ -7,17 +7,17 @@ class MainPage(ft.Stack):
         self.page = page
         self.expand = True
 
-
-        self.header = Header(page)
+        self.header = Header(page=page)
 
         self.page_without_header = ft.Column(
             controls=[
 
             ],
-            scroll = ft.ScrollMode.ALWAYS,
             expand = True,
             horizontal_alignment = ft.CrossAxisAlignment.CENTER,
-            on_scroll_interval = 1
+            scroll = ft.ScrollMode.ALWAYS,
+            on_scroll_interval = 0,
+            on_scroll=self.on_scroll
         )
 
         self.controls = [
@@ -29,6 +29,14 @@ class MainPage(ft.Stack):
 
     def page_on_resize(self, e: ft.WindowResizeEvent):
         self.page.update()
+
+
+    def on_scroll(self, e: ft.OnScrollEvent):
+        if e.pixels > 100:
+            self.header.change_transparency_of_background(to_transparent=False)
+        else:
+            self.header.change_transparency_of_background(to_transparent=True)
+
 
 
 #Test launch (python -m ui.main_page)

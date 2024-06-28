@@ -7,21 +7,47 @@ class Header(ft.Stack):
         self.height = 50
         self.page = page
         self.alignment=ft.alignment.center
-        self.background_color = ft.Container(
+
+        self.transparent_background_color = ft.Container(
+            bgcolor="#00ffffff",
+            padding=0
+        )
+
+        self.not_transparent_background_color = ft.Container(
             bgcolor="#ffffff",
             padding=0
         )
 
+        self.transparent_switcher = ft.AnimatedSwitcher(
+            self.transparent_background_color,
+            transition=ft.AnimatedSwitcherTransition.FADE,
+            duration=500,
+            reverse_duration=500,
+            switch_in_curve=ft.AnimationCurve.EASE_IN,
+            switch_out_curve=ft.AnimationCurve.EASE_IN,
+        )
+
         self.scroll_to_headphones = ft.Container(
-            content=ft.Text("Headphones"),
+            content=ft.Text(
+                value="Headphones",
+                weight=ft.FontWeight.BOLD
+            ),
         )
 
         self.scroll_to_begin = ft.Container(
-            content=ft.Text("Begin"),
+            content=ft.Text(
+                value="Begin",
+                weight=ft.FontWeight.BOLD,
+                color="#000000"
+            ),
+            margin=10
         )
 
         self.show_contacts_button = ft.Container(
-            content=ft.Text("Contacts"),
+            content=ft.Text(
+                value="Contacts",
+                weight=ft.FontWeight.BOLD
+            ),
         )
 
         self.text_buttons_row = ft.Row(
@@ -43,15 +69,19 @@ class Header(ft.Stack):
         )
 
         self.controls = [
-            self.background_color,
+            self.transparent_switcher,
             self.header_buttons
         ]
+
+    def change_transparency_of_background(self, to_transparent: bool):
+        self.transparent_switcher.content = self.transparent_background_color if to_transparent else self.not_transparent_background_color
+        self.transparent_switcher.update()
 
 #Test launch (python -m ui.header)
 if __name__ == "__main__":
     def main(page: ft.Page):
         page.padding = 0
-        header = Header()
+        header = Header(page)
         page.add(header)
         page.bgcolor = "black"
         page.update()
