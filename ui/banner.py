@@ -8,6 +8,7 @@ class Banner(ft.Stack):
         self.page = page
         self.height = self.page.height
         self.width = self.page.width
+        self.alignment = ft.alignment.center
 
         self.title = ft.Text(
             value="Пусть музыка станет ближе",
