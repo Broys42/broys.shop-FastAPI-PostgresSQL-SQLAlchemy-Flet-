@@ -6,7 +6,7 @@ class Header(ft.Stack):
         super().__init__()
         self.height = 50
         self.page = page
-        self.alignment=ft.alignment.center
+        self.alignment = ft.alignment.center
 
         self.transparent_background_color = ft.Container(
             bgcolor="#00ffffff",
@@ -27,20 +27,18 @@ class Header(ft.Stack):
             switch_out_curve=ft.AnimationCurve.EASE_IN,
         )
 
-        self.scroll_to_headphones = ft.Container(
+        self.scroll_to_headphones_button = ft.Container(
             content=ft.Text(
                 value="Headphones",
-                weight=ft.FontWeight.BOLD
+                weight=ft.FontWeight.BOLD,
             ),
         )
 
-        self.scroll_to_begin = ft.Container(
+        self.scroll_to_begin_button = ft.Container(
             content=ft.Text(
                 value="Begin",
                 weight=ft.FontWeight.BOLD,
-                color="#000000"
-            ),
-            margin=10
+            )
         )
 
         self.show_contacts_button = ft.Container(
@@ -50,22 +48,46 @@ class Header(ft.Stack):
             ),
         )
 
+        self.logo_text = ft.Container(
+            content=ft.Text(
+                value="BROYS SHOP",
+                weight=ft.FontWeight.BOLD,
+            ),
+            padding=ft.Padding(left=30, right=0, top=0, bottom=0),
+            width=150
+        )
+
         self.text_buttons_row = ft.Row(
             controls=[
-                self.scroll_to_begin,
-                self.scroll_to_headphones,
+                self.scroll_to_begin_button,
+                self.scroll_to_headphones_button,
                 self.show_contacts_button
             ],
-            spacing=30
+            spacing=30,
+            alignment=ft.MainAxisAlignment.CENTER,
+        )
+
+        #No IconButton to avoid all control animation
+        self.shop_bag_icon = ft.Icon(
+            name="SHOPPING_BAG",
+            color="black",
+            size=20,
+        )
+
+        self.container_for_icon = ft.Container(
+            content=self.shop_bag_icon,
+            alignment=ft.alignment.center_right,
+            padding=ft.Padding(left=0, right=30, top=0, bottom=0),
+            width=150
         )
 
         self.header_buttons = ft.Row(
             controls=[
-                ft.Text("Logo"),
+                self.logo_text,
                 self.text_buttons_row,
-                ft.Text("")
+                self.container_for_icon
             ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+            alignment=ft.MainAxisAlignment.SPACE_BETWEEN
         )
 
         self.controls = [
