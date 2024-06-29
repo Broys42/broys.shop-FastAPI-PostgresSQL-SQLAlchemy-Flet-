@@ -36,7 +36,7 @@ class Header(ft.Stack):
 
         self.scroll_to_begin_button = ft.Container(
             content=ft.Text(
-                value="Begin",
+                value="To begin",
                 weight=ft.FontWeight.BOLD,
             )
         )
