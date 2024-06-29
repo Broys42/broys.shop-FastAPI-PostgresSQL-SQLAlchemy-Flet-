@@ -17,7 +17,7 @@ class Video(ft.Video):
 
         self.expand=True
         self.playlist_mode=ft.PlaylistMode.SINGLE
-        self.fill_color=ft.colors.BLUE_400
+        self.fill_color="#e4c4c4"
         self.aspect_ratio=self.page.width/self.page.height
         self.show_controls=False
         self.volume=0
