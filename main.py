@@ -5,6 +5,7 @@ import flet as ft
 import flet.fastapi as flet_fastapi
 from ui.banner import Banner
 from ui.video import Video
+from ui.footer import Footer
 from ui.main_page import MainPage
 from ui.headphones_row import HeadphonesRow
 from fastapi import FastAPI, Request
@@ -24,8 +25,9 @@ async def main(page: ft.Page):
     video = Video(page)
     banner = Banner(page, video)
     headphones_row = HeadphonesRow(page)
+    footer = Footer(page)
     main_page = MainPage(page)
-    main_page.page_without_header.controls.extend([banner, headphones_row])
+    main_page.page_without_header.controls.extend([banner, headphones_row, footer])
     page.add(main_page)
 
     def scroll_to_key(e, key: str):
