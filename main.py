@@ -35,8 +35,8 @@ async def main(page: ft.Page):
         main_page.page_without_header.scroll_to(offset=0, duration=1000)
 
     banner.container_for_button.on_click = lambda e: scroll_to_key(e=e, key="34")
-    main_page.header.scroll_to_headphones.on_click = lambda e: scroll_to_key(e=e, key="34")
-    main_page.header.scroll_to_begin.on_click = lambda e: scroll_to_begin(e=e)
+    main_page.header.scroll_to_headphones_button.on_click = lambda e: scroll_to_key(e=e, key="34")
+    main_page.header.scroll_to_begin_button.on_click = lambda e: scroll_to_begin(e=e)
 
 
     video.playlist_add(video.videoBanner)
