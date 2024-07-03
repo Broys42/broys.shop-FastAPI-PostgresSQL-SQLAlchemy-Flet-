@@ -15,10 +15,9 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-view = View()
-
 flet_app = FastAPI()
 
-flet_app.mount("/", flet_fastapi.app(view.main))
+view = View()
 
+flet_app.mount("/", flet_fastapi.app(view.main))
 app.mount("/", flet_app)
