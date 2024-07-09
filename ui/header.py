@@ -29,21 +29,21 @@ class Header(ft.Stack):
 
         self.scroll_to_headphones_button = ft.Container(
             content=ft.Text(
-                value="Headphones",
+                value="Наушники",
                 weight=ft.FontWeight.BOLD,
             ),
         )
 
         self.scroll_to_begin_button = ft.Container(
             content=ft.Text(
-                value="To begin",
+                value="В начало",
                 weight=ft.FontWeight.BOLD,
             )
         )
 
         self.show_contacts_button = ft.Container(
             content=ft.Text(
-                value="Contacts",
+                value="Контакты",
                 weight=ft.FontWeight.BOLD
             ),
         )
