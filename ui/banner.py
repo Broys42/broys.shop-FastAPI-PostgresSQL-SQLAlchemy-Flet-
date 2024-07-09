@@ -1,5 +1,6 @@
 import flet as ft
 import asyncio
+from ui.main_btn import MainButton
 
 class Banner(ft.Stack):
     def __init__(self, page: ft.Page, video: ft.Video):
@@ -24,26 +25,7 @@ class Banner(ft.Stack):
             weight=ft.FontWeight.NORMAL
         )
 
-        self.button_background = ft.Container(
-            bgcolor='#ffffff',
-            width=300,
-            height=50
-        )
-
-        self.button_text = ft.Text(
-            value="Перейти к товару",
-            size=15,
-            color=ft.colors.BLACK,
-            weight=ft.FontWeight.BOLD
-        )
-
-        self.button = ft.Stack(
-            controls=[
-                self.button_background,
-                self.button_text
-            ],
-            alignment=ft.alignment.center,
-        )
+        self.button = MainButton()
 
         #Stack dont support click event so button also plased in container
         self.container_for_button = ft.Container(
