@@ -23,7 +23,7 @@ class Footer(ft.Stack):
 
         self.show_resume = ft.Container(
             content=ft.Text(
-                value="Resume",
+                value="Резюме",
                 weight=ft.FontWeight.BOLD,
             ),
             url="https://novosibirsk.hh.ru/resume/32ccd64aff0d5596750039ed1f75587771386a"
