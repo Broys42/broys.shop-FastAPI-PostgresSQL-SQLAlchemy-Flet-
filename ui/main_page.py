@@ -1,5 +1,5 @@
 import flet as ft
-from ui.header import Header
+from ui.header import HeaderInMainPage
 
 class MainPage(ft.Stack):
     def __init__(self, page: ft.Page):
@@ -7,7 +7,7 @@ class MainPage(ft.Stack):
         self.page = page
         self.expand = True
 
-        self.header = Header(page=page)
+        self.header = HeaderInMainPage(page=page)
 
         self.page_without_header = ft.Column(
             controls=[

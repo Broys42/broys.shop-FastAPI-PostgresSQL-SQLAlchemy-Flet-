@@ -1,17 +1,18 @@
 import flet as ft
 
 class MainButton(ft.Stack):
-    def __init__(self):
+    def __init__(self, button_text, width = None):
         super().__init__()
+        self.button_text = button_text
 
         self.button_background = ft.Container(
             bgcolor='#ffffff',
-            width=300,
+            width=width,
             height=50
         )
 
         self.button_text = ft.Text(
-            value="Перейти к товару",
+            value=f"{button_text}",
             size=15,
             color=ft.colors.BLACK,
             weight=ft.FontWeight.BOLD
@@ -28,7 +29,7 @@ class MainButton(ft.Stack):
 #Test launch (python -m ui.main_btn)
 if __name__ == "__main__":
     def main(page: ft.Page):
-        main_btn = MainButton()
+        main_btn = MainButton(button_text="Тестовая кнопка")
         page.bgcolor = "black"
         page.add(main_btn)
 

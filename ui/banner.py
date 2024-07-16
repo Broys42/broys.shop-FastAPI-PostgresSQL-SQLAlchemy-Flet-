@@ -25,7 +25,7 @@ class Banner(ft.Stack):
             weight=ft.FontWeight.NORMAL
         )
 
-        self.button = MainButton()
+        self.button = MainButton(button_text="Перейти к товару", width=300)
 
         #Stack dont support click event so button also plased in container
         self.container_for_button = ft.Container(

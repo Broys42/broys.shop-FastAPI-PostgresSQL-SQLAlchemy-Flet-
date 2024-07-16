@@ -7,10 +7,8 @@ class ItemPage(ft.Row):
     def __init__(self, page: ft.Page):
         super().__init__()
         self.height = 500
-        self.add_in_cart_button = MainButton()
+        self.add_in_cart_button = MainButton(button_text="Добавить в корзину", width=300)
         self.item_counter = ItemCounter()
-
-        self.add_in_cart_button.button_text.value = "Добавить в корзину"
 
         self.item_image = ft.Image(
             src="https://raw.githubusercontent.com/Broys42/broys.shop/main/assets/images/headphones/a50-gallery-ps4-01-refresh.png",
@@ -38,16 +36,28 @@ class ItemPage(ft.Row):
             weight=ft.FontWeight.NORMAL,
         )
 
-        self.item_info_pannel = ft.Column(
+        self.item_title_and_divider = ft.Column(
             controls=[
                 self.item_title,
-                ft.Divider(thickness=3, color="white"),
+                ft.Divider(thickness=3, color="white")
+            ]
+        )
+
+        self.item_counter_and_description = ft.Column(
+            controls=[
                 self.item_counter,
                 self.item_description,
+            ]
+        )
+
+        self.item_info_pannel = ft.Column(
+            controls=[
+                self.item_title_and_divider,
+                self.item_counter_and_description,
                 self.add_in_cart_button
             ],
             width=300,
-            alignment=ft.MainAxisAlignment.CENTER
+            alignment=ft.MainAxisAlignment.SPACE_EVENLY
         )
 
         self.controls = [
