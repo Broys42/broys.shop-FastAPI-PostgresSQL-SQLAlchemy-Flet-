@@ -31,7 +31,7 @@ class HeadphonesRow(ft.Row):
     async def set_headphones_in_controls(self):
         result = await self.viewmodel.headphones.get_all_headphones()
         for i in result:
-            headphones_item = HeadphonesItem(i.name, i.description, i.price, i.image)
+            headphones_item = HeadphonesItem(i.id, i.name, i.description, i.price, i.image)
             self.headphones_items.append(headphones_item)
         self.controls.extend(self.headphones_items)
         self.page.update()
