@@ -115,7 +115,8 @@ class HeaderOutsideMainPage(ft.Stack):
             content=ft.Text(
                 value="На главную",
                 weight=ft.FontWeight.BOLD,
-            )
+            ),
+            on_click=self.go_to_main_page
         )
 
         self.show_contacts_button = ft.Container(
@@ -171,11 +172,14 @@ class HeaderOutsideMainPage(ft.Stack):
             self.header_buttons
         ]
 
+    def go_to_main_page(self, e):
+        self.page.go(route="/")
+
 #Test launch (python -m ui.header)
 if __name__ == "__main__":
     def main(page: ft.Page):
         page.padding = 0
-        header = HeaderInMainPage(page)
+        header = HeaderOutsideMainPage(page)
         page.add(header)
         page.bgcolor = "black"
         page.update()
