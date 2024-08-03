@@ -1,10 +1,6 @@
 import asyncio
 import flet as ft
-from ui.banner import Banner
-from ui.video import Video
-from ui.footer import Footer
 from ui.main_page import MainPage
-from ui.headphones_row import HeadphonesRow
 from ui.item_page import HeadphonesPage
 from src.viewmodel.viewmodel import ViewModel
 from fastapi import FastAPI, Request, Response
@@ -19,40 +15,21 @@ class View():
         self.product_id = 0
         self.headphones_id = 0
 
-
     async def main(self, page: ft.Page):
         self.page = page
         self.templeroute = TemplateRoute(self.page.route)
-        self.main_page = MainPage(self.page)
-        self.video = Video(self.page)
-        self.banner = Banner(self.page, self.video)
-        self.headphones_row = HeadphonesRow(self.page, self.viewmodel)
-        await self.headphones_row.set_headphones_in_controls()
-        self.footer = Footer(self.page)
-        self.main_page.page_without_header.controls.extend([self.banner, self.headphones_row, self.footer])
+        self.main_page = MainPage(page=self.page, viewmodel=self.viewmodel)
 
         async def set_main_page():
-            self.page.clean()
+            await self.page.clean_async()
             self.page.add(self.main_page)
-
-            def scroll_to_key(e, key: str):
-                self.main_page.page_without_header.scroll_to(key=key, duration=1000)
-
-            def scroll_to_begin(e):
-                self.main_page.page_without_header.scroll_to(offset=0, duration=1000)
-
-            self.banner.container_for_button.on_click = lambda e: scroll_to_key(e=e, key="34")
-            self.main_page.header.scroll_to_headphones_button.on_click = lambda e: scroll_to_key(e=e, key="34")
-            self.main_page.header.scroll_to_begin_button.on_click = lambda e: scroll_to_begin(e=e)
-            self.video.playlist_add(self.video.videoBanner)
-            self.video.start_play()
+            self.main_page.start_video()
+            await self.main_page.headphones_row.set_headphones_in_controls()
             self.page.update()
 
         async def set_headphones_page():
-            self.video.stop_play()
+            self.main_page.video.stop_play()
             await self.page.clean_async()
-            self.page.bgcolor = "000000"
-            self.page.padding = 0
             self.headphones_page = HeadphonesPage(page=self.page, headphones_id=self.headphones_id)
             self.page.add(self.headphones_page)
 
@@ -68,7 +45,6 @@ class View():
 
             #Main page
             if self.page.route == "/":
-                # self.page.views.clear()
                 await set_main_page()
                 self.page.padding = 0
                 self.page.update()
