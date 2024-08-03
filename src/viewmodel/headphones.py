@@ -15,7 +15,7 @@ class HeadphonesViewModel():
         for i in headphones_from_db:
             self.model.headphones.headphones.append(
                 Headphones_model(
-                    i.name, i.price, i.description, i.image,
+                    i.headphones_id, i.name, i.price, i.description, i.image,
                 )
             )
         return self.model.headphones.headphones
