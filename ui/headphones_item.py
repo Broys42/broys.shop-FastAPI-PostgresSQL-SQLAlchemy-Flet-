@@ -1,25 +1,31 @@
 import flet as ft
 
 class HeadphonesItem(ft.Column):
-    def __init__(self):
+    def __init__(self, id, name, price, description, image):
         super().__init__()
+        self.name : str = name
+        self.price : int = price
+        self.description : str = description
+        self.image : str = image
+        self.id : int = id
+
         self.background_rectangle = ft.Container(
             bgcolor="#f3f3f3",
         )
 
         self.headphones_image = ft.Image(
-            src='https://raw.githubusercontent.com/Broys42/broys.shop/main/assets/images/headphones/a50-gallery-ps4-01-refresh.png'
+            src=self.image
         )
 
         self.item_title = ft.Text(
-            value="G 735 - WHITE",
+            value=self.name,
             size=17,
             color=ft.colors.BLACK,
             weight=ft.FontWeight.NORMAL
         )
 
         self.item_price = ft.Text(
-            value="2500",
+            value=str(self.price) + "₽",
             size=17,
             color=ft.colors.BLACK,
             weight=ft.FontWeight.BOLD
