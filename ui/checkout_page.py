@@ -34,6 +34,7 @@ class CheckoutPage(ft.Stack):
             spacing=50,
         )
 
+        #Divider is save space for header
         self.page_with_divider = ft.Column(
             controls=[
                 ft.Divider(height=50),
