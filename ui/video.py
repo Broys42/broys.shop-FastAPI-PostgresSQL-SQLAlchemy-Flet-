@@ -13,8 +13,8 @@ class Video(ft.Video):
         self.videoBanner = ft.VideoMedia(
             resource='https://github.com/Broys42/broys.shop/raw/main/assets/video/video.mp4',
         )
-        self.is_loaded = False
-
+        # self.is_loaded = False
+        self.stop_event = asyncio.Event()
         self.expand=True
         self.playlist_mode=ft.PlaylistMode.SINGLE
         self.fill_color="#e4c4c4"
@@ -25,19 +25,19 @@ class Video(ft.Video):
         self.autoplay=True
         self.filter_quality=ft.FilterQuality.HIGH
         self.muted=True
-        self.on_loaded=lambda e: self.switch_is_loated()
+        # self.on_loaded=lambda e: self.switch_is_loated()
         self.on_enter_fullscreen=lambda e: print("Video entered fullscreen!")
         self.on_exit_fullscreen=lambda e: print("Video exited fullscreen!")
 
     def add_video_in_playlist(self):
         self.playlist_add(self.videoBanner)
 
-    def switch_is_loated(self):
-        self.is_loaded = True
+    # def switch_is_loated(self):
+    #     self.is_loaded = True
 
     async def start_loop_play(self):
         #Flet is blinkink color when video is repeating. 7500 is duration of video in mlseconds then jump to 0
-        while True:
+        while not self.stop_event.is_set():
             await asyncio.sleep(0.1)
             self.play()
             try:
@@ -45,6 +45,15 @@ class Video(ft.Video):
                     self.seek(0)
             except:
                 pass
+
+    def start_play(self):
+        self.stop_event.clear()
+        asyncio.create_task(self.start_loop_play())
+        self.page.update()
+
+    def stop_play(self):
+        self.stop_event.set()
+        self.page.update()
 
     def page_on_resize(self, e: ft.WindowResizeEvent):
         self.height = e.page.height
