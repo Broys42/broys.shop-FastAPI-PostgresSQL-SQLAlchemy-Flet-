@@ -16,6 +16,9 @@
 - Переход на страницу оплаты
 - Docker-compose файл
 
+## В планах
+- На этом проекте в сентябре я хочу разобраться с процессом деплоя, чтобы приложение работало на домене broys.shop
+
 ## Скриншоты
 [![Screenshot-1.jpg](https://i.postimg.cc/mkmkSg4B/Screenshot-1.jpg)](https://postimg.cc/dZTJsvDx)
 [![Screenshot-2.jpg](https://i.postimg.cc/KzFYSMvm/Screenshot-2.jpg)](https://postimg.cc/Z97m60dQ)
